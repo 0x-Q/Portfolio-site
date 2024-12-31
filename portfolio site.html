@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulquddus Onaolapo - Frontend Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .project {
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .favicon-demo {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f5f6fa;
+            border-radius: 4px;
+        }
+
+        .favicon-result {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Abdulquddus Onaolapo</h1>
+        <p>Computer Engineer</p>
+    </header>
+
+    <div class="container">
+        <section class="about">
+            <h2>About Me</h2>
+            <p>I'm a passionate Computer Engineer with expertise in HTML, CSS, JavaScript, and modern web technologies. I love creating intuitive and responsive web experiences. I'm currently learning SAP ABAP and I keep learning about Artificial Intelligence. I earned a badge of completion for Google x Kaggle Generative-AI intensive course.  </p>
+        </section>
+
+        <section class="project">
+            <h2>Featured Project: Favicon Grabber</h2>
+            <p>A JavaScript tool that fetches and displays favicons from any website URL.</p>
+            
+            <div class="favicon-demo">
+                <input type="text" id="urlInput" placeholder="Enter website URL (e.g., google.com)" style="width: 300px; padding: 5px;">
+                <button onclick="getFavicon()">Get Favicon</button>
+                
+                <div class="favicon-result">
+                    <img id="faviconImg" width="32" height="32">
+                    <span id="faviconUrl"></span>
+                </div>
+            </div>
+
+            <h3>Technical Details:</h3>
+            <ul>
+                <li>Utilizes Google's favicon service API</li>
+                <li>Handles various URL formats</li>
+                <li>Real-time favicon fetching</li>
+                <li>Error handling for invalid URLs</li>
+            </ul>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                <li>Responsive Web Design</li>
+                <li>Frontend Frameworks (React, Vue)</li>
+                <li>Version Control (Git)</li>
+                <li>Web Performance Optimization</li>
+            </ul>
+        </section>
+
+        <section class="Achievements">
+            <h2>Achievements</h2>
+            <ul>
+                <li><img src="images/completion badge.svg" alt="Completion Badge" class="achievement-badge" title="Completion Badge">Google x Kaggle Generative- AI intensive course badge of completion</li>
+                <li><img src="images/code forker.svg" alt="Code Forker Badge" class="achievement-badge" title="Code Forker Badge">Google x Kaggle Generative-AI intensive course code forker badge </li>
+                <li><img src="images/python coder.svg" alt="Python Coder Badge" class="achievement-badge" title="Python Coder Badge">Google x Kaggle Generative-AI intensive course python coder badge </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function getFavicon() {
+            const urlInput = document.getElementById('urlInput');
+            const faviconImg = document.getElementById('faviconImg');
+            const faviconUrl = document.getElementById('faviconUrl');
+            
+            let url = urlInput.value.trim();
+            
+            // Add https:// if not present
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            
+            try {
+                const domain = new URL(url).hostname;
+                const googleFaviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+                
+                faviconImg.src = googleFaviconUrl;
+                faviconUrl.textContent = `Favicon URL: ${googleFaviconUrl}`;
+                
+                faviconImg.onerror = () => {
+                    faviconImg.src = '';
+                    faviconUrl.textContent = 'Error: Favicon not found';
+                };
+            } catch (error) {
+                faviconImg.src = '';
+                faviconUrl.textContent = 'Error: Invalid URL';
+            }
+        }
+    </script>
+</body>
+</html>
